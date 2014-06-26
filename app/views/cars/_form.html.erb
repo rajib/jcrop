@@ -1,0 +1,33 @@
+<%= form_for(@car, html: {onsubmit: "return checkForm()"}) do |f| %>
+
+  <!-- hidden crop params -->
+  <input type="hidden" id="x1" name="x1" />
+  <input type="hidden" id="y1" name="y1" />
+  <input type="hidden" id="x2" name="x2" />
+  <input type="hidden" id="y2" name="y2" />
+
+  <h2>Step1: Please select image file</h2>
+  <div class="field">
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo, onchange: "fileSelectHandler()" %>
+  </div>
+
+  <div class="error"></div>
+
+  <div class="step2">
+    <h2>Step2: Please select a crop region</h2>
+    <img id="preview" />
+    
+    <div class="info">
+      <label>File size</label> <input type="text" id="filesize" name="filesize" />
+      <label>Type</label> <input type="text" id="filetype" name="filetype" />
+      <label>Image dimension</label> <input type="text" id="filedim" name="filedim" />
+      <label>W</label> <input type="text" id="w" name="w" />
+      <label>H</label> <input type="text" id="h" name="h" />
+    </div>
+
+    <%= f.submit %>
+  </div>
+
+<% end %>
+ 
