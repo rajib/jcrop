@@ -22,7 +22,7 @@ $(function() {
         $.ajax({
             type: "POST",
             url: "/cars",
-            data: { "name": "John", "photo": imageDataUrl }
+            data: {"car" : { "name": "John", "photo": imageDataUrl }}
         }).done(function( msg ) {
             alert( "Data Saved: " + msg );
         });
