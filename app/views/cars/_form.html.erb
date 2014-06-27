@@ -1,4 +1,4 @@
-<%= form_for(@car, html: {onsubmit: "return checkForm()"}) do |f| %>
+<%#= form_for(@car, html: {onsubmit: "return checkForm()"}) do |f| %>
 
   <!-- hidden crop params -->
   <input type="hidden" id="x1" name="x1" />
@@ -7,10 +7,12 @@
   <input type="hidden" id="y2" name="y2" />
 
   <h2>Step1: Please select image file</h2>
-  <div class="field">
-    <%= f.label :photo %><br>
-    <%= f.file_field :photo, onchange: "fileSelectHandler()" %>
-  </div>
+  <div><input type="file" name="image_file" id="image_file" onchange="fileSelectHandler()" /></div>
+
+  <!-- <div class="field">
+    <%#= f.label :photo %><br>
+    <%#= f.file_field :photo, onchange: "fileSelectHandler()" %>
+  </div> -->
 
   <div class="error"></div>
 
@@ -26,8 +28,8 @@
       <label>H</label> <input type="text" id="h" name="h" />
     </div>
 
-    <%= f.submit %>
+    <a href="#" id="cropImageAndProcess">Crop Image And Process</a>
+    <!-- <input type="button" value="Crop Image And Process" id="cropImageAndProcess"> -->
   </div>
 
-<% end %>
- 
+<%# end %>

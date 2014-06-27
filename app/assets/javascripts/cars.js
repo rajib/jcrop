@@ -1,3 +1,36 @@
+$(function() {
+    $("#cropImageAndProcess").click(function(e) {
+        var img = new Image();
+        img.src = $('#preview').attr('src');
+
+        var x = $('#x1').val();
+        var y = $('#y1').val();
+        var w = $('.info #w').val();
+        var h = $('.info #h').val();    
+
+        v = Pixastic.process(img, "crop", {
+            rect : {
+                left : x, top : y, width : w, height : h
+            }
+        });
+
+        document.body.appendChild(v); 
+        var imageDataUrl = v.toDataURL();
+
+        console.log(imageDataUrl);
+        // Upload to server
+        $.ajax({
+            type: "POST",
+            url: "/cars",
+            data: { "name": "John", "photo": imageDataUrl }
+        }).done(function( msg ) {
+            alert( "Data Saved: " + msg );
+        });
+
+        e.preventDefault(); 
+    });    
+});
+
 // convert bytes into friendly format
 function bytesToSize(bytes) {
     var sizes = ['Bytes', 'KB', 'MB'];
@@ -35,7 +68,7 @@ var jcrop_api, boundx, boundy;
 function fileSelectHandler() {
 
     // get selected file
-    var oFile = $('#car_photo')[0].files[0];
+    var oFile = $('#image_file')[0].files[0];
 
     // hide all errors
     $('.error').hide();
